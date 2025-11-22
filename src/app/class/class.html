@@ -1,0 +1,30 @@
+<div class="flex items-center justify-center h-screen bg-gray-100">
+  <div class="w-full max-w-md p-6 border border-gray-200 rounded-2xl shadow-xl bg-white text-gray-900">
+    <h2 class="text-3xl font-extrabold mb-6 text-gray-800 text-center">Create Class</h2>
+
+    <form (ngSubmit)="submitForm()">
+
+      <div class="mb-4">
+        <label class="block mb-2 font-medium text-gray-700">Class Name</label>
+        <input type="text" [(ngModel)]="formdata.ClassName" name="ClassName"
+               class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+               placeholder="Enter class name" required>
+      </div>
+
+      <div class="mb-4">
+        <label class="block mb-2 font-medium text-gray-700">Subject</label>
+        <input type="text" [(ngModel)]="formdata.Subject" name="Subject"
+               class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
+               placeholder="Enter subject" required>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-slate-900 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
+        Create Class
+      </button>
+    </form>
+
+    <p *ngIf="successMessage" class="mt-4 text-green-600 font-medium text-center">{{ successMessage }}</p>
+    <p *ngIf="errorMessage" class="mt-4 text-red-600 font-medium text-center">{{ errorMessage }}</p>
+  </div>
+</div>

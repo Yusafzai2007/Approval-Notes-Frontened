@@ -1,0 +1,71 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+
+  <!-- Form: show only if joined classes exist -->
+  <div *ngIf="joinclassdata.length > 0" class="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl ring-1 ring-gray-900/5">
+    <h1 class="text-2xl font-bold text-gray-900 text-center mb-6">Upload Notes</h1>
+
+    <form (ngSubmit)="uploadNotes()" enctype="multipart/form-data">
+
+      <!-- Title -->
+      <div class="mb-5">
+        <label class="block text-gray-700 font-medium mb-1">Title</label>
+        <input type="text" [(ngModel)]="notedata.title" name="title" required
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-black focus:outline-none"
+               placeholder="Enter note title" />
+      </div>
+
+      <!-- Description -->
+      <div class="mb-5">
+        <label class="block text-gray-700 font-medium mb-1">Description</label>
+        <textarea [(ngModel)]="notedata.description" name="description" required rows="4"
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-black focus:outline-none"
+                  placeholder="Enter description"></textarea>
+      </div>
+
+      <!-- Select Class -->
+      <div class="mb-5">
+        <label class="block text-gray-700 font-medium mb-1">Select Class</label>
+        <select name="className" [(ngModel)]="notedata.className" required
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:border-black focus:outline-none bg-white">
+          <option value="" disabled>Select a class</option>
+          <option *ngFor="let dp of joinclassdata" [value]="dp.ClassName">
+            {{ dp.ClassName }} - {{ dp.Subject }}
+          </option>
+        </select>
+      </div>
+
+      <!-- File Upload -->
+      <div class="mb-6">
+        <label class="block text-gray-700 font-medium mb-2">Upload File</label>
+        <input type="file" (change)="onFileSelected($event)" required
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-white cursor-pointer" />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="loading"
+              class="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-900 transition duration-200 relative">
+        <span *ngIf="!loading">Upload Notes</span>
+        <span *ngIf="loading" class="flex items-center justify-center gap-2">
+          <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+          </svg>
+          Uploading...
+        </span>
+      </button>
+
+    </form>
+  </div>
+
+  <!-- No classes joined -->
+  <div *ngIf="joinclassdata.length === 0"
+       class="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl ring-1 ring-gray-900/5 text-center">
+    <h2 class="text-xl font-bold mb-4 text-gray-900">No Classes Joined</h2>
+    <p class="mb-6 text-gray-700">You have to join at least 1 class to upload notes.</p>
+    <button (click)="goToJoinClass()"
+            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200">
+      Join New Class
+    </button>
+  </div>
+
+</div>

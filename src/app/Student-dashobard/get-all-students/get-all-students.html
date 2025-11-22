@@ -1,0 +1,37 @@
+<div class="p-6 bg-gray-100 min-h-screen">
+  <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Students Notes</h2>
+
+  <div class="overflow-x-auto rounded-lg shadow-lg">
+    <table class="min-w-full divide-y divide-gray-300 bg-white rounded-lg">
+      <thead class="bg-gray-800 text-white">
+        <tr>
+          <th class="px-6 py-3 text-left">Title</th>
+          <th class="px-6 py-3 text-left">Description</th>
+          <th class="px-6 py-3 text-left">Status</th>
+          <th class="px-6 py-3 text-left">File</th>
+          <th class="px-6 py-3 text-left">Class</th>
+          <th class="px-6 py-3 text-left">Subject</th>
+          <th class="px-6 py-3 text-left">Uploaded At</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let note of joinclassdata">
+          <td class="px-6 py-4">{{ note.title }}</td>
+          <td class="px-6 py-4">{{ note.description }}</td>
+          <td class="px-6 py-4 capitalize">{{ note.status }}</td>
+          <td class="px-6 py-4">
+            <a href="{{ note.file }}" target="_blank" class="text-blue-600 hover:underline">
+              View File
+            </a>
+          </td>
+          <td class="px-6 py-4">{{ note.ClassName }}</td>
+          <td class="px-6 py-4">{{ note.Subject }}</td>
+          <td class="px-6 py-4">{{ note.uploadedAt | date : 'shortTime' }}</td>
+        </tr>
+        <tr *ngIf="joinclassdata.length === 0">
+          <td class="px-6 py-4 text-center" colspan="7">No notes available</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
