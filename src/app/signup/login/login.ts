@@ -32,11 +32,11 @@ export class Login {
       console.log(res);
 
       // 🔵 2. CHECK ROLE AND REDIRECT
-      if (res.tourism.role === 'Teacher') {
-        alert('Login successful as Teacher');
+      if (res.tourism.role === 'teacher') {
+        // alert('Login successful as Teacher');
         this.router.navigateByUrl('class');
       } else {
-        alert('Login successful');
+        // alert('Login successful');
         this.router.navigateByUrl('admin/Add-Notes');
       }
     },

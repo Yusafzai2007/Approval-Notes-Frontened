@@ -22,10 +22,7 @@ export class Sidebar implements OnInit {
     this.checkScreen();
   }
 
-
-
-
-  constructor(private route: Router,private dep:Service) {
+  constructor(private route: Router, private dep: Service) {
     this.checkScreen();
   }
 
@@ -39,38 +36,23 @@ export class Sidebar implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchCurrentUser()
+    this.fetchCurrentUser();
   }
 
-    currentUserData: CurrentUserdata | null = null;
+  currentUserData: CurrentUserdata | null = null;
 
-
-   fetchCurrentUser() {
+  fetchCurrentUser() {
     this.dep.currentuserlogin().subscribe((res: CurrentUserResponsedata) => {
-      this.currentUserData = res.message
-
+      this.currentUserData = res.message;
     });
   }
 
-  
   logoutdata() {
     this.dep.logout().subscribe({
-      next:(res)=>{
+      next: (res) => {
         console.log(res);
-        this.route.navigateByUrl("")
-        
-      }
-    })
+        this.route.navigateByUrl('');
+      },
+    });
   }
-
-
-
-
 }
-
-
-
-
-
-
-

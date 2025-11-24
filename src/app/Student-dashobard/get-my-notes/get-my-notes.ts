@@ -8,7 +8,7 @@ import { SafeUrlPipe } from '../../../pipes/safe-url.pipe';
 @Component({
   selector: 'app-get-my-notes',
   standalone: true,
-  imports: [CommonModule, FormsModule,SafeUrlPipe],
+  imports: [CommonModule, FormsModule, SafeUrlPipe],
   templateUrl: './get-my-notes.html',
   styleUrls: ['./get-my-notes.css'],
 })
@@ -91,10 +91,8 @@ export class GetMyNotes implements OnInit {
     });
   }
 
-isPDF(url: string): boolean {
-  if (!url) return false;
-  return url.toLowerCase().endsWith('.pdf');
-}
-
-
+  isPDF(url: string): boolean {
+    if (!url) return false;
+    return url.toLowerCase().endsWith('.pdf');
+  }
 }

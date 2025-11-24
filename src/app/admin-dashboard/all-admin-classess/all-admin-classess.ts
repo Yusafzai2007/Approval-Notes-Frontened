@@ -3,7 +3,7 @@ import { Service } from '../../service-data/service';
 import { Classdata, ClassesResponsedata } from '../../interface/admin-classess';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-admin-classess',
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './all-admin-classess.css',
 })
 export class AllAdminClassess {
-  constructor(private dep: Service) {}
+  constructor(private dep: Service,private route:Router) {}
 
   joinclassdata: Classdata[] = [];
   selectedClass: Classdata | null = null; // For editing
@@ -60,8 +60,10 @@ export class AllAdminClassess {
   }
 
 
-
-
+  createclass()
+{
+  this.route.navigateByUrl("/class/get-admin-classess")
+}
 
 deleteclass(id: string) {
   const confirmed = confirm("Are you sure you want to delete this class?");
